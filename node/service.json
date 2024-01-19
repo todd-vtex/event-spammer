@@ -7,13 +7,17 @@
   "workers": 4,
   "events": {
     "example": {
-      "sender": "vtex.events-example",
+      "sender": "todddesantis.events-example",
       "keys": ["send-event"]
     }
   },
   "routes": {
     "hcheck": {
       "path": "/_v/app/events-example/hcheck",
+      "public": true
+    },
+    "todd": {
+      "path": "/_v/app/events-example/todd",
       "public": true
     }
   }

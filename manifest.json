@@ -1,7 +1,7 @@
 {
   "name": "events-example",
-  "vendor": "vtex",
-  "version": "0.0.1",
+  "vendor": "todddesantis",
+  "version": "0.0.0",
   "title": "Events Example",
   "description": "Reference app for VTEX IO Services",
   "dependencies": {},
@@ -22,6 +22,13 @@
     },
     {
       "name": "vbase-read-write"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "enmnzafdke2t9.x.pipedream.net",
+        "path": "/"
+      }
     }
   ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"

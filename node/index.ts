@@ -13,6 +13,9 @@ import { getCacheContext, setCacheContext } from './utils/cachedContext'
 const TREE_SECONDS_MS = 3 * 1000
 const CONCURRENCY = 10
 
+// const axios = require('axios')
+// import axios from 'axios'
+
 declare global {
   type Context = ServiceContext<IOClients, State>
 
@@ -21,7 +24,7 @@ declare global {
   }
 }
 
-function sendEventWithTimer() {
+function sendEventWithTimer () {
   setInterval(function () {
     const context = getCacheContext()
 
@@ -32,7 +35,8 @@ function sendEventWithTimer() {
     }
 
     return createSendEvent(context)
-  }, 30000)
+  }, 5000)
+  // axios.get('https://enmnzafdke2t9.x.pipedream.net')
   console.log('FIRED HERE')
 }
 
@@ -60,6 +64,10 @@ export default new Service<IOClients, State, ParamsContext>({
       ctx.set('Cache-Control', 'no-cache')
       ctx.status = 200
       ctx.body = 'ok'
+    },
+    todd: (ctx: any) => {
+      ctx.status = 200
+      ctx.body = 'hello todd'
     },
   },
 })
