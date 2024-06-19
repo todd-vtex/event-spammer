@@ -130,10 +130,10 @@
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
 
-"@vtex/api@6.46.0":
-  version "6.46.0"
-  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.46.0.tgz#208d14b96cbc8fd5eb6bd18fbd0c8424886e6154"
-  integrity sha512-XAvJlD1FG1GynhPXiMcayunahFCL2r3ilO5MHAWKxYvB/ljyxi4+U+rVpweeaQGpxHfhKHdfPe7qNEEh2oa2lw==
+"@vtex/api@6.46.1":
+  version "6.46.1"
+  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.46.1.tgz#55a8755ae48f5400e7f1ed1921cd547950bb7a2a"
+  integrity sha512-geoxVvyWoQpOQ70Zmx3M8SBkRoGOS/bp9Gy26M+iCue63jofVSwmFz1zf66EaHA1PKOJNRgQPFwY+oeDE1U2lQ==
   dependencies:
     "@types/koa" "^2.11.0"
     "@types/koa-compose" "^3.2.3"
@@ -283,6 +283,11 @@ async@^2.0.0:
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
   dependencies:
     lodash "^4.17.10"
+
+async@^3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/async/-/async-3.2.5.tgz#ebd52a8fdaf7a2289a24df399f8d8485c8a46b66"
+  integrity sha512-baNZyqaaLhyLVKm/DlvdW051MSgO6b8eVfIezl9E5PqWxFgzLm/wQntEW4zOytVburDEr0JlALEpdOFwvErLsg==
 
 axios-retry@^3.1.2:
   version "3.1.2"

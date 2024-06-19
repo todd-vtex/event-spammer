@@ -12,7 +12,7 @@ import { getCacheContext, setCacheContext } from './utils/cachedContext'
 
 const TREE_SECONDS_MS = 3 * 1000
 const CONCURRENCY = 10
-
+const ORDER_WAIT = 30000
 // const axios = require('axios')
 // import axios from 'axios'
 
@@ -35,7 +35,10 @@ function sendEventWithTimer () {
     }
 
     return createSendEvent(context)
-  }, 5000)
+  }, ORDER_WAIT)
+
+
+  
   // axios.get('https://enmnzafdke2t9.x.pipedream.net')
   console.log('FIRED HERE')
 }

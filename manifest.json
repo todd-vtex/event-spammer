@@ -26,7 +26,14 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "enmnzafdke2t9.x.pipedream.net",
+        "host": "todddesantis.vtexcommercestable.com.br",
+        "path": "/"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "todddesantis.vtexpayments.com.br",
         "path": "/"
       }
     }
