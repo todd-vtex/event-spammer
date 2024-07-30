@@ -1,9 +1,9 @@
 {
-  "name": "events-example",
+  "name": "order-operator",
   "vendor": "todddesantis",
   "version": "0.0.0",
-  "title": "Events Example",
-  "description": "Reference app for VTEX IO Services",
+  "title": "Order Operator",
+  "description": "Fire orders and fill up dashboard",
   "dependencies": {},
   "builders": {
     "node": "6.x",
@@ -26,14 +26,14 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "emekanwosu.vtexcommercestable.com.br",
+        "host": "todddesantis.vtexcommercestable.com.br",
         "path": "/"
       }
     },
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "emekanwosu.vtexpayments.com.br",
+        "host": "todddesantis.vtexpayments.com.br",
         "path": "/"
       }
     }

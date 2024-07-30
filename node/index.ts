@@ -10,7 +10,7 @@ import { example } from './events/example'
 import { createSendEvent } from './routes/notify'
 import { getCacheContext, setCacheContext } from './utils/cachedContext'
 
-const config = require('../config')
+const config = require('./config')
 
 const TREE_SECONDS_MS = 3 * 1000
 const CONCURRENCY = 10
@@ -48,7 +48,7 @@ function sendEventWithTimer () {
   console.log('FIRED HERE')
 }
 
-sendEventWithTimer()
+// sendEventWithTimer()
 
 export default new Service<IOClients, State, ParamsContext>({
   clients: {
@@ -67,18 +67,19 @@ export default new Service<IOClients, State, ParamsContext>({
     example,
   },
   routes: {
-    hcheck: (ctx: any) => {
+    startEngine: (ctx: any) => {
       setCacheContext(ctx)
       ctx.set('Cache-Control', 'no-cache')
       ctx.status = 200
-      ctx.body = 'ok'
-      // sendEventWithTimer()
+      ctx.body = 'engine started'
+      sendEventWithTimer()
     },
-    todd: (ctx: any) => {
+    stopEngine: (ctx: any) => {
       ctx.status = 200
-      ctx.body = 'hello todd'
+      ctx.body = 'engine stopped'
       clearInterval(intervalId);
     },
   },
 })
+
 

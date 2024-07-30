@@ -7,17 +7,17 @@
   "workers": 4,
   "events": {
     "example": {
-      "sender": "todddesantis.events-example",
+      "sender": "todddesantis.order-operator",
       "keys": ["send-event"]
     }
   },
   "routes": {
-    "hcheck": {
-      "path": "/_v/app/events-example/hcheck",
+    "startEngine": {
+      "path": "/_v/app/order-operator/startEngine",
       "public": true
     },
-    "todd": {
-      "path": "/_v/app/events-example/todd",
+    "stopEngine": {
+      "path": "/_v/app/order-operator/stopEngine",
       "public": true
     }
   }

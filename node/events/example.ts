@@ -4,7 +4,7 @@ const axios = require('axios')
 
 // you will need to change the file name of 'configExample' to 'config'
 // const config = require('../configExample')
-const config = require('../config')
+const config = require('../config.js')
 
 // CONSTANTS
 const accountName = config.accountName
@@ -16,7 +16,7 @@ const numItemsToFire = 3;
 // const shippingPrice = 500;
 const shippingPrice = config.shippingPrice;
 const shippingSla = config.shippingSla
-const paymentSystemId = config.paymentSytemId
+const paymentSystemId = config.paymentSystemId
 const skuList = config.skuList
 const baseUrl = `https://${accountName}.vtexcommercestable.com.br`
 const createOrderEndpoint = '/api/checkout/pub/orders/'
@@ -41,6 +41,7 @@ const createOrderConfig = {
 
 export async function example(ctx: EventContext<IOClients>) {
   console.log('RECEIVED EVENT', ctx.body)
+  // console.log('RECEIVED EVENT')
 
   /*
 * what fields will change??
@@ -135,7 +136,7 @@ export async function example(ctx: EventContext<IOClients>) {
       // skuObjects.push({skuId: item.id, basePrice: item.sellingPrice})
     })
 
-    console.log('skuObjects are: ', `${JSON.stringify(skuObjects, null, 2)}`);
+    // console.log('skuObjects are: ', `${JSON.stringify(skuObjects, null, 2)}`);
     // create the order data
     // quantity is random 1-5
     skuObjects.forEach((sku: any, skuIndex: number) => {
@@ -172,7 +173,7 @@ export async function example(ctx: EventContext<IOClients>) {
     orderData.paymentData.payments[0].referenceValue = totalAmount
     orderData.paymentData.payments[0].value = totalAmount
 
-    console.log(`orderData before firing: ${JSON.stringify(orderData, null, 2)}`);
+    // console.log(`orderData before firing: ${JSON.stringify(orderData, null, 2)}`);
 
     // then fire the order with all 3 calls
     axios.put(`${baseUrl}${createOrderEndpoint}`, orderData, createOrderConfig).then((res: any) => {
