@@ -2,17 +2,25 @@ import type {EventContext, IOClients} from '@vtex/api'
 
 const axios = require('axios')
 
+// you will need to change the file name of 'configExample' to 'config'
+// const config = require('../configExample')
+const config = require('../config')
+
 // CONSTANTS
-const accountName = 'todddesantis'
-const emailPrefix = 'todd.desantis'
-const apiKey = 'vtexappkey-todddesantis-CDHQNI'
-const token = 'XNVUPLICXFGSACGQPHHHHZGMTCXQBYCVLWMVWPHVTDDFKEZVTBQBIWAQSRQMTYTKYGOGBACDRLLTBEQDGZOOGEEPRUAGJCVSFEUUVMIYEYKXHSBBQAHZXDSJZHEKLLXV'
+const accountName = config.accountName
+const emailPrefix = config.emailPrefix
+const apiKey = config.apiKey
+const token = config.token
+// const numItemsToFire = 3;
 const numItemsToFire = 3;
-const shippingPrice = 500;
-const shippingSla = "Standard delivery"
+// const shippingPrice = 500;
+const shippingPrice = config.shippingPrice;
+const shippingSla = config.shippingSla
+const paymentSystemId = config.paymentSytemId
+const skuList = config.skuList
 const baseUrl = `https://${accountName}.vtexcommercestable.com.br`
 const createOrderEndpoint = '/api/checkout/pub/orders/'
-const skuList = [32, 255, 33, 7, 4]
+// const skuList = [160, 960137981]
 const simulationEndpoint = '/api/checkout/pub/orderforms/simulation?sc=1'
 
 axios.defaults.headers.common["X-VTEX-API-AppToken"] = token;
@@ -84,7 +92,7 @@ export async function example(ctx: EventContext<IOClients>) {
       payments: [
         {
           installments: 1,
-          paymentSystem: "17",
+          paymentSystem: paymentSystemId,
           groupName: "promissoryPaymentGroup",
           referenceValue: 1500,
           value: 1500,
@@ -119,11 +127,12 @@ export async function example(ctx: EventContext<IOClients>) {
   // need to get prices
   axios.post(`${baseUrl}${simulationEndpoint}`, simulationData).then((res: any) => {
     const simulatedItems = res.data.items;
-
+// console.log(`sim data: ${JSON.stringify(res.data, null, 2)}`);
     //Sku object  { skuId = 1, basePrice = 1000}
     let skuObjects: any = []
     simulatedItems.forEach((item: any) => {
       skuObjects.push({skuId: item.id, basePrice: item.price})
+      // skuObjects.push({skuId: item.id, basePrice: item.sellingPrice})
     })
 
     console.log('skuObjects are: ', `${JSON.stringify(skuObjects, null, 2)}`);
@@ -134,7 +143,7 @@ export async function example(ctx: EventContext<IOClients>) {
         id: sku.skuId.toString(),
         quantity: pickRandomNumber(4) + 1,
         seller: "1",
-        price: sku.basePrice * 100
+        price: sku.basePrice
       })
 
       let priceToPush;
@@ -163,7 +172,7 @@ export async function example(ctx: EventContext<IOClients>) {
     orderData.paymentData.payments[0].referenceValue = totalAmount
     orderData.paymentData.payments[0].value = totalAmount
 
-    // console.log(`orderData before firing: ${JSON.stringify(orderData, null, 2)}`);
+    console.log(`orderData before firing: ${JSON.stringify(orderData, null, 2)}`);
 
     // then fire the order with all 3 calls
     axios.put(`${baseUrl}${createOrderEndpoint}`, orderData, createOrderConfig).then((res: any) => {
@@ -182,7 +191,7 @@ export async function example(ctx: EventContext<IOClients>) {
           "accountId": null,
           "value": totalAmount,
           "tokenId": null,
-          "paymentSystem": "17",
+          "paymentSystem": paymentSystemId,
           "isBillingAddressDifferent": false,
           "fields": {},
           "installments": 1,

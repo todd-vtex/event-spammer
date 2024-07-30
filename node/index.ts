@@ -10,10 +10,12 @@ import { example } from './events/example'
 import { createSendEvent } from './routes/notify'
 import { getCacheContext, setCacheContext } from './utils/cachedContext'
 
+const config = require('../config')
+
 const TREE_SECONDS_MS = 3 * 1000
 const CONCURRENCY = 10
 // const ORDER_WAIT = 30000
-const ORDER_WAIT = 10000
+const ORDER_WAIT = 3600 / config.ordersPerHour * 1000
 
 let intervalId: any = undefined
 // const axios = require('axios')
