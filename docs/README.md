@@ -12,4 +12,6 @@ Instructions to use:
 - Go here to stop it:
 - https://workspaceName--accountName.myvtex.com/_v/app/order-operator/stopEngine
 
+NOTES:
+- Please disable any shipping promotions that change the shipping price as this will break it. the calls I make use math to add up the amount and the shipping amount needs to be correct
 - Good luck!
